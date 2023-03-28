@@ -1,0 +1,89 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+android {
+    namespace 'com.nikasov.musiclyrics'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.nikasov.musiclyrics"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.4'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+kapt {
+    correctErrorTypes = true
+}
+
+dependencies {
+
+    implementation project(":core:common")
+    implementation project(":core:theme")
+    implementation project(":core:presentation")
+    implementation project(":data")
+    implementation project(":domain")
+
+    implementation Libs.Android.CoreKtx
+    implementation Libs.Android.AppCompat
+    implementation Libs.Android.Material
+    implementation Libs.Android.Coil
+    implementation Libs.Android.CoilCompose
+    implementation Libs.Android.Lifecycle
+    implementation Libs.Android.LifecycleViewModelCompose
+
+    implementation Libs.Compose.Activity
+    implementation Libs.Compose.Navigation
+    implementation Libs.Compose.UI
+    implementation Libs.Compose.UiToolingPreview
+    debugImplementation Libs.Compose.UiTooling
+    debugImplementation Libs.Compose.TestManifest
+
+    implementation Libs.Coroutines.Core
+    implementation Libs.Coroutines.Android
+
+    implementation Libs.Hilt.Core
+    implementation Libs.Hilt.ComposeNavigation
+    kapt Libs.Hilt.Kapt
+
+    testImplementation Libs.Test.JUnit
+    androidTestImplementation Libs.Test.JUnitExt
+    androidTestImplementation Libs.Test.Espresso
+    androidTestImplementation Libs.Test.ComposeJUnit
+}
