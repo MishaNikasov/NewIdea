@@ -34,4 +34,5 @@ dependencies {
     implementation Libs.Android.CoreKtx
     implementation Libs.Android.AppCompat
     implementation Libs.Android.Material
+    implementation Libs.Android.Retrofit
 }

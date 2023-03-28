@@ -46,4 +46,9 @@ dependencies {
     implementation Libs.Compose.UiToolingPreview
     debugImplementation Libs.Compose.UiTooling
     debugImplementation Libs.Compose.TestManifest
+
+    testImplementation Libs.Test.JUnit
+    androidTestImplementation Libs.Test.JUnitExt
+    androidTestImplementation Libs.Test.Espresso
+    androidTestImplementation Libs.Test.ComposeJUnit
 }
