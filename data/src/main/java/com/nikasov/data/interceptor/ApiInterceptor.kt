@@ -10,7 +10,7 @@ class ApiInterceptor: Interceptor {
 
         val request = original.newBuilder()
             .addHeader("Content-Type", "application/json")
-            .addHeader("Authorization", "Bearer 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")
+            .addHeader("Authorization", "Bearer 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")
             .url(originalHttpUrl)
             .build()
 

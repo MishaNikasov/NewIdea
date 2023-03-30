@@ -67,6 +67,7 @@ dependencies {
     implementation Libs.Android.CoilCompose
     implementation Libs.Android.Lifecycle
     implementation Libs.Android.LifecycleViewModelCompose
+    implementation Libs.Android.Timber
 
     implementation Libs.Compose.Activity
     implementation Libs.Compose.Navigation

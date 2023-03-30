@@ -35,4 +35,5 @@ dependencies {
     implementation Libs.Android.AppCompat
     implementation Libs.Android.Material
     implementation Libs.Android.Retrofit
+    implementation Libs.Android.Gson
 }

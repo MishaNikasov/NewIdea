@@ -38,13 +38,14 @@ dependencies {
     implementation Libs.Android.CoreKtx
     implementation Libs.Android.AppCompat
     implementation Libs.Android.Material
-    api Libs.Android.Retrofit
+    implementation Libs.Android.Retrofit
+    implementation Libs.Android.Timber
 
     implementation Libs.Hilt.Core
     kapt Libs.Hilt.Kapt
 
-    api Libs.Android.Gson
-    api Libs.Android.Scalars
-    debugApi Libs.Android.ChuckerDebug
-    releaseApi Libs.Android.ChuckerRelease
+    implementation Libs.Android.Gson
+    implementation Libs.Android.Scalars
+    debugImplementation Libs.Android.ChuckerDebug
+    releaseImplementation Libs.Android.ChuckerRelease
 }

@@ -12,7 +12,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-const val GENERAL_TIMEOUT = 15L
+const val GENERAL_TIMEOUT = 30L
 
 @Module
 @InstallIn(SingletonComponent::class)

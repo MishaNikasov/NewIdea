@@ -2,9 +2,9 @@ package com.nikasov.data.di
 
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.Gson
-import com.nikasov.data.api.CompletionsApi
+import com.nikasov.data.api.ChatApi
 import com.nikasov.data.interceptor.ApiInterceptor
-import com.nikasov.data.interceptor.CompletionsInterceptor
+import com.nikasov.data.interceptor.ChatInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +19,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class CompletionsModule {
+class ChatModule {
 
     @Provides
     @Singleton
@@ -32,7 +32,7 @@ class CompletionsModule {
             .readTimeout(GENERAL_TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(GENERAL_TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(ApiInterceptor())
-            .addInterceptor(CompletionsInterceptor())
+            .addInterceptor(ChatInterceptor())
             .addInterceptor(chuckerInterceptor)
 
         return builder.build()
@@ -44,7 +44,7 @@ class CompletionsModule {
     fun provideCompletionsRetrofit(@Named("completions") okHttpClient: OkHttpClient, gsonBuilder: Gson): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl("https://api.openai.com/v1/chat/completions")
+            .baseUrl("https://api.openai.com/v1/")
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gsonBuilder))
             .build()
@@ -52,8 +52,8 @@ class CompletionsModule {
 
     @Provides
     @Singleton
-    fun provideCompletionsApi(@Named("completions") retrofit: Retrofit): CompletionsApi {
-        return retrofit.create(CompletionsApi::class.java)
+    fun provideChatApi(@Named("completions") retrofit: Retrofit): ChatApi {
+        return retrofit.create(ChatApi::class.java)
     }
 
 }
