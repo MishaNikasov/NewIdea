@@ -17,6 +17,9 @@ private val LightColorPalette = lightColors(
     primary = RoyalBlue,
     primaryVariant = Ultramarine,
     secondary = PersianGreen,
+    secondaryVariant = Color.Gray,
+    surface = Color.White,
+    background = Color.White,
     onSecondary = Color.White
 )
 

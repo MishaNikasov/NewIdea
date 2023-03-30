@@ -15,11 +15,11 @@ fun AppButton(
     text: String,
     modifier: Modifier = Modifier,
     loading: Boolean = false,
-    action: () -> Unit
+    onClick: () -> Unit
 ) {
     Card(
         backgroundColor = MaterialTheme.colors.secondary,
-        onClick = { action() },
+        onClick = { onClick() },
         modifier = modifier.fillMaxWidth()
     ) {
         if (loading) {

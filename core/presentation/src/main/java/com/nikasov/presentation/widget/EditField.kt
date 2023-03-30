@@ -17,7 +17,7 @@ import com.nikasov.theme.Shapes
 fun EditField(
     label: String,
     modifier: Modifier = Modifier,
-    onValueChange: (String) -> Unit,
+    onValueChanged: (String) -> Unit,
 ) {
     Card(modifier = modifier
         .fillMaxWidth()
@@ -32,7 +32,7 @@ fun EditField(
             colors = editFieldColors(),
             onValueChange = {
                 text = it
-                onValueChange(it)
+                onValueChanged(it)
             },
             modifier = Modifier
                 .fillMaxWidth()

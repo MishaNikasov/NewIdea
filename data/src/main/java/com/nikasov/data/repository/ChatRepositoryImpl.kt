@@ -34,6 +34,13 @@ class ChatRepositoryImpl @Inject constructor(
             temperature = 0.2f,
             messages = messages
         )
+        return DataState.successes(
+            listOf(
+                Advice("12345", "yx11v421yre"),
+                Advice("12345", "y41421t1423yre"),
+                Advice("12345", "x4y42c11yre"),
+            )
+        )
         return obtain(
             request = chatApi.find(body),
             mapper = { mapper.mapChatResponse(it) }

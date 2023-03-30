@@ -17,13 +17,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.nikasov.newidea.navigation.main.MainRouter
 import com.nikasov.presentation.widget.AppButton
 import com.nikasov.presentation.widget.EditField
 import com.nikasov.theme.NewIdeaTheme
 
 @Composable
 fun HomeScreen(
-    openAdvice: (String) -> Unit
+    mainRouterEvent: (MainRouter) -> Unit
 ) {
 
     val notificationPermission = rememberLauncherForActivityResult(
@@ -54,14 +55,15 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(50.dp))
         EditField(
             label = "Your idea",
-            modifier = Modifier
-                .padding(horizontal = 24.dp)
-        ) { searchText = it }
+            modifier = Modifier.padding(horizontal = 24.dp),
+            onValueChanged = { searchText = it  }
+        )
         Spacer(modifier = Modifier.weight(1f))
         AppButton(
             text = "Go for it!",
-            modifier = Modifier.padding(12.dp)
-        ) { openAdvice(searchText) }
+            modifier = Modifier.padding(12.dp),
+            onClick = { mainRouterEvent(MainRouter.Advice(searchText)) }
+        )
     }
 }
 
