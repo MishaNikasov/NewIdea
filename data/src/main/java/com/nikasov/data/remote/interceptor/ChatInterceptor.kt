@@ -1,17 +1,18 @@
-package com.nikasov.data.interceptor
+package com.nikasov.data.remote.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class ApiInterceptor: Interceptor {
+class ChatInterceptor: Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val original = chain.request()
         val originalHttpUrl = original.url()
 
+        val url = originalHttpUrl.newBuilder()
+            .build()
+
         val request = original.newBuilder()
-            .addHeader("Content-Type", "application/json")
-            .addHeader("Authorization", "Bearer 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")
-            .url(originalHttpUrl)
+            .url(url)
             .build()
 
         return chain.proceed(request)

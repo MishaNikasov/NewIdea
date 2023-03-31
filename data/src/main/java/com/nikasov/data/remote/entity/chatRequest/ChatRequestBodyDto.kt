@@ -1,7 +1,7 @@
-package com.nikasov.data.entity.chatRequest
+package com.nikasov.data.remote.entity.chatRequest
 
 import com.google.gson.annotations.SerializedName
-import com.nikasov.data.entity.ChatMessageDto
+import com.nikasov.data.remote.entity.ChatMessageDto
 
 data class ChatRequestBodyDto(
     @SerializedName("model")

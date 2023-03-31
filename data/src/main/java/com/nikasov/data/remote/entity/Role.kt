@@ -1,4 +1,4 @@
-package com.nikasov.data.entity
+package com.nikasov.data.remote.entity
 
 enum class Role(val value: String) {
     System("system"),

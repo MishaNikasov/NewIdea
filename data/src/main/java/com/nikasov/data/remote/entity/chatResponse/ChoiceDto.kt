@@ -1,7 +1,7 @@
-package com.nikasov.data.entity.chatResponse
+package com.nikasov.data.remote.entity.chatResponse
 
 import com.google.gson.annotations.SerializedName
-import com.nikasov.data.entity.ChatMessageDto
+import com.nikasov.data.remote.entity.ChatMessageDto
 
 data class ChoiceDto(
     @SerializedName("finish_reason")

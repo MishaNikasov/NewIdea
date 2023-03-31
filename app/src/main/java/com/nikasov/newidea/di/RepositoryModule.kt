@@ -1,7 +1,7 @@
 package com.nikasov.newidea.di
 
-import com.nikasov.data.api.ChatApi
-import com.nikasov.data.mapper.AdviceMapper
+import com.nikasov.data.remote.api.ChatApi
+import com.nikasov.data.remote.mapper.AdviceDtoMapper
 import com.nikasov.data.repository.ChatRepositoryImpl
 import dagger.Module
 import dagger.Provides
@@ -16,6 +16,6 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideChatRepository(chatApi: ChatApi, mapper: AdviceMapper): ChatRepository = ChatRepositoryImpl(chatApi, mapper)
+    fun provideChatRepository(chatApi: ChatApi, mapper: AdviceDtoMapper): ChatRepository = ChatRepositoryImpl(chatApi, mapper)
 
 }

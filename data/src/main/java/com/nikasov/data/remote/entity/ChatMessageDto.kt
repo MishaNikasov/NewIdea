@@ -1,4 +1,4 @@
-package com.nikasov.data.entity
+package com.nikasov.data.remote.entity
 
 import com.google.gson.annotations.SerializedName
 

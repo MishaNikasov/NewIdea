@@ -1,4 +1,4 @@
-package com.nikasov.data.entity.chatResponse
+package com.nikasov.data.remote.entity.chatResponse
 
 import com.google.gson.annotations.SerializedName
 

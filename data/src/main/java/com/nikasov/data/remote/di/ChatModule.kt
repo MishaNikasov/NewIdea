@@ -1,10 +1,10 @@
-package com.nikasov.data.di
+package com.nikasov.data.remote.di
 
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.Gson
-import com.nikasov.data.api.ChatApi
-import com.nikasov.data.interceptor.ApiInterceptor
-import com.nikasov.data.interceptor.ChatInterceptor
+import com.nikasov.data.remote.api.ChatApi
+import com.nikasov.data.remote.interceptor.ApiInterceptor
+import com.nikasov.data.remote.interceptor.ChatInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

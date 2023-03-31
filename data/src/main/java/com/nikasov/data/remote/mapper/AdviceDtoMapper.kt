@@ -1,11 +1,11 @@
-package com.nikasov.data.mapper
+package com.nikasov.data.remote.mapper
 
-import com.nikasov.data.entity.chatResponse.ChatResponseDto
+import com.nikasov.data.remote.entity.chatResponse.ChatResponseDto
 import nikasov.domain.entitiy.Advice
 import timber.log.Timber
 import javax.inject.Inject
 
-class AdviceMapper @Inject constructor() {
+class AdviceDtoMapper @Inject constructor() {
 
     fun mapChatResponse(dto: ChatResponseDto?): List<Advice> {
         dto ?: return emptyList()

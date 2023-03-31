@@ -1,4 +1,4 @@
-package com.nikasov.data.di
+package com.nikasov.data.remote.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector

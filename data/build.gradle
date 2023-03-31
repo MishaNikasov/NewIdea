@@ -23,6 +23,7 @@ android {
         }
     }
     compileOptions {
+        coreLibraryDesugaringEnabled = true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -40,6 +41,13 @@ dependencies {
     implementation Libs.Android.Material
     implementation Libs.Android.Retrofit
     implementation Libs.Android.Timber
+    coreLibraryDesugaring Libs.Android.Desugaring
+
+    implementation Libs.Room.Core
+    implementation Libs.Room.Ktx
+    implementation Libs.Room.LifecycleKtx
+    annotationProcessor Libs.Room.Annotation
+    kapt Libs.Room.Kapt
 
     implementation Libs.Hilt.Core
     kapt Libs.Hilt.Kapt
