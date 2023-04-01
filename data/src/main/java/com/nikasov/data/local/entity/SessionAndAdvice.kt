@@ -7,7 +7,7 @@ data class SessionAndAdvice(
     @Embedded val session: SessionEntity,
     @Relation(
         parentColumn = "sessionId",
-        entityColumn = "adviceId"
+        entityColumn = "sessionId"
     )
     val adviceList: List<AdviceEntity>
 )

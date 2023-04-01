@@ -17,7 +17,7 @@ class AdviceDtoMapper @Inject constructor() {
         Timber.d("splitMessages: ${splitMessages.joinToString()}")
         return splitMessages.mapIndexed { index, message ->
             Advice(
-                id = index.toString(),
+                id = index.toLong(),
                 text = message
             )
         }

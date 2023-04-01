@@ -9,7 +9,7 @@ import com.nikasov.data.local.entity.SessionEntity
 @Dao
 interface SessionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertSession(sessionEntity: SessionEntity)
+    suspend fun insertSession(sessionEntity: SessionEntity): Long
 
     @Delete
     suspend fun deleteSession(sessionEntity: SessionEntity)

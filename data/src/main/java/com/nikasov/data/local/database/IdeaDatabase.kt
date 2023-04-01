@@ -10,7 +10,7 @@ import com.nikasov.data.local.entity.SessionEntity
 
 @Database(
     entities = [AdviceEntity::class, SessionEntity::class],
-    version = 1
+    version = 2
 )
 abstract class IdeaDatabase: RoomDatabase() {
     abstract val adviceDao: AdviceDao

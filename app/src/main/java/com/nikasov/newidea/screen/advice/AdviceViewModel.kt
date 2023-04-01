@@ -8,9 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import nikasov.domain.entitiy.Advice
 import nikasov.domain.repository.ChatRepository
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,18 +16,42 @@ class AdviceViewModel @Inject constructor(
     private val chatRepository: ChatRepository
 ) : ViewModel() {
 
-    private val _adviceList = MutableStateFlow<State<List<Advice>>>(State.Idle)
-    val adviceList = _adviceList.asStateFlow()
+    private val _screenState = MutableStateFlow<State<AdviceScreenState>>(State.Idle)
+    val screenState = _screenState.asStateFlow()
 
-    fun find(query: String) {
+    private var currentSessionId: Long? = null
+
+    fun startSession(searchText: String) {
         viewModelScope.launch {
-            _adviceList.emit(State.loading())
-            when (val result = chatRepository.getAdvices(query)) {
-                is DataState.Error -> { }
-                is DataState.Success -> {
-                    _adviceList.emit(State.successes(result.data ?: emptyList()))
-                    Timber.d("find: ${result.data?.joinToString { it.text }}")
-                }
+            currentSessionId = chatRepository.createSession(searchText)
+            handleNewAdvices(searchText)
+        }
+    }
+
+    fun searchForAdvices(searchText: String) {
+        viewModelScope.launch {
+            _screenState.emit(State.loading())
+            handleNewAdvices(searchText)
+        }
+    }
+
+    private suspend fun handleNewAdvices(searchText: String) {
+        when(val result = chatRepository.getAdvices(searchText)) {
+            is DataState.Error -> _screenState.emit(State.error())
+            is DataState.Success -> {
+                val list = result.data ?: emptyList()
+                chatRepository.addAdvicesToSession(
+                    sessionId = currentSessionId ?: return,
+                    list = list
+                )
+                _screenState.emit(
+                    State.successes(
+                        AdviceScreenState(
+                            title = searchText,
+                            adviceList = list
+                        )
+                    )
+                )
             }
         }
     }

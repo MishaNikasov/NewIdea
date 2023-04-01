@@ -39,6 +39,7 @@ android {
 dependencies {
 
     implementation project(":core:theme")
+    implementation project(":core:common")
 
     implementation Libs.Android.CoreKtx
     implementation Libs.Android.AppCompat

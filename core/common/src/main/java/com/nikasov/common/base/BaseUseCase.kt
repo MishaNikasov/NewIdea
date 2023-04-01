@@ -4,7 +4,7 @@ import com.nikasov.common.utils.DataState
 import com.nikasov.common.utils.ErrorModel
 import retrofit2.Response
 
-abstract class BaseRepository {
+abstract class BaseUseCase {
 
     fun <I, O> obtain(
         request: Response<I?>,

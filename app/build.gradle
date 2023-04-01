@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.nikasov.musiclyrics'
+    namespace 'com.nikasov.newidea'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.nikasov.musiclyrics"
+        applicationId "com.nikasov.newidea"
         minSdk 24
         targetSdk 33
         versionCode 1

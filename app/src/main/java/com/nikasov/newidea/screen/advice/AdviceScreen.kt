@@ -11,14 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.nikasov.common.utils.State
-import com.nikasov.newidea.navigation.main.MainRouter
 import com.nikasov.presentation.widget.AdviceItem
-import nikasov.domain.entitiy.Advice
 
 @Composable
 fun AdviceScreen(
     searchText: String,
-    mainRouterEvent: (MainRouter) -> Unit,
     viewModel: AdviceViewModel = hiltViewModel()
 ) {
     Column(
@@ -28,16 +25,16 @@ fun AdviceScreen(
     ) {
 
         LaunchedEffect(true) {
-            viewModel.find(searchText)
+            viewModel.startSession(searchText)
         }
 
-        val adviceList = viewModel.adviceList.collectAsState()
+        val adviceList = viewModel.screenState.collectAsState()
 
-        when(adviceList.value) {
-            is State.Error -> { }
+        when (adviceList.value) {
+            is State.Error -> {}
             is State.Loading, State.Idle -> CircularProgressIndicator()
             is State.Successes -> {
-                val list = (adviceList.value as State.Successes<List<Advice>>).data
+                val list = (adviceList.value as State.Successes<AdviceScreenState>).data.adviceList
                 LazyColumn(
                     verticalArrangement = Arrangement.Center,
                     modifier = Modifier.fillMaxSize()
@@ -49,7 +46,8 @@ fun AdviceScreen(
                             text = item.text,
                             modifier = Modifier.padding(horizontal = 8.dp),
                             onClick = {
-                                mainRouterEvent(MainRouter.Advice(item.text))
+//                                mainRouterEvent(MainRouter.Advice(item.text))
+                                viewModel.searchForAdvices(item.text)
                             }
                         )
                         Spacer(modifier = Modifier.height(6.dp))

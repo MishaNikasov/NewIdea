@@ -1,8 +1,7 @@
 package com.nikasov.newidea.di
 
-import com.nikasov.data.remote.api.ChatApi
-import com.nikasov.data.remote.mapper.AdviceDtoMapper
 import com.nikasov.data.repository.ChatRepositoryImpl
+import com.nikasov.data.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,6 +15,18 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideChatRepository(chatApi: ChatApi, mapper: AdviceDtoMapper): ChatRepository = ChatRepositoryImpl(chatApi, mapper)
+    fun provideChatRepository(
+        getAdviceListUseCase: GetAdviceListUseCase,
+        createSessionUseCase: CreateSessionUseCase,
+        addAdvicesToSessionUseCase: AddAdvicesToSessionUseCase,
+        getAllSessionUseCase: GetAllSessionUseCase,
+        getSessionUseCase: GetSessionUseCase
+    ): ChatRepository = ChatRepositoryImpl(
+        getAdviceListUseCase,
+        createSessionUseCase,
+        addAdvicesToSessionUseCase,
+        getAllSessionUseCase,
+        getSessionUseCase
+    )
 
 }
