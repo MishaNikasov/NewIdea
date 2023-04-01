@@ -1,15 +1,10 @@
 package com.nikasov.newidea.screen.home
 
-import android.Manifest
-import android.os.Build
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,18 +21,6 @@ import com.nikasov.theme.NewIdeaTheme
 fun HomeScreen(
     mainRouterEvent: (MainRouter) -> Unit
 ) {
-
-    val notificationPermission = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission(),
-        onResult = {}
-    )
-
-    SideEffect {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
-        }
-    }
-
     Column(
         horizontalAlignment = CenterHorizontally,
         modifier = Modifier
@@ -56,7 +39,7 @@ fun HomeScreen(
         EditField(
             label = "Your idea",
             modifier = Modifier.padding(horizontal = 24.dp),
-            onValueChanged = { searchText = it  }
+            onValueChanged = { searchText = it }
         )
         Spacer(modifier = Modifier.weight(1f))
         AppButton(
