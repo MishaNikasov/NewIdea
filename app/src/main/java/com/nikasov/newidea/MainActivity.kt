@@ -6,7 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.compose.rememberNavController
-import com.nikasov.newidea.navigation.main.MainGraph
+import com.nikasov.newidea.screen.root.RootScreen
 import com.nikasov.theme.NewIdeaTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navHostController = rememberNavController()
             NewIdeaTheme(false) {
-                MainGraph(navHostController)
+                RootScreen(navHostController)
             }
         }
     }

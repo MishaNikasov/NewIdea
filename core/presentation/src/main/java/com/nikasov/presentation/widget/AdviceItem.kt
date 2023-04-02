@@ -3,10 +3,10 @@ package com.nikasov.presentation.widget
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nikasov.theme.NewIdeaTheme
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AdviceItem(
     text: String,
@@ -23,13 +23,12 @@ fun AdviceItem(
     modifier: Modifier = Modifier
 ) {
     Card(
+        onClick = { onClick() },
         shape = RoundedCornerShape(25.dp),
-        border = BorderStroke(4.dp, MaterialTheme.colors.surface),
+        border = BorderStroke(4.dp, MaterialTheme.colorScheme.surface),
         modifier = modifier
             .fillMaxWidth()
-            .heightIn(min = 60.dp),
-        elevation = 2.dp,
-        onClick = { onClick() }
+            .heightIn(min = 60.dp)
     ) {
         Column(
             verticalArrangement = Arrangement.Center,

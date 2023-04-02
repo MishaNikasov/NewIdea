@@ -39,7 +39,7 @@ android {
 dependencies {
     implementation Libs.Android.CoreKtx
     implementation Libs.Android.AppCompat
-    implementation Libs.Android.Material
+    implementation Libs.Android.Material3
 
     implementation Libs.Compose.Activity
     implementation Libs.Compose.UI

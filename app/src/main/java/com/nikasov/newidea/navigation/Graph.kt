@@ -1,5 +1,7 @@
 package com.nikasov.newidea.navigation
 
 enum class Graph(val route: String) {
-    Main("main")
+    Root("root_graph"),
+    History("history_graph"),
+    Advice("advice_graph")
 }
