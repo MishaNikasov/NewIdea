@@ -16,7 +16,7 @@ fun AppButton(
     loading: Boolean = false,
     onClick: () -> Unit
 ) {
-    OutlinedButton(
+    FilledTonalButton(
         onClick = { onClick() },
         modifier = modifier.fillMaxWidth()
     ) {
