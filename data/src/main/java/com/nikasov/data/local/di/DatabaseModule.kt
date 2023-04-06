@@ -2,9 +2,7 @@ package com.nikasov.data.local.di
 
 import android.content.Context
 import androidx.room.Room
-import com.nikasov.data.local.dao.AdviceDao
-import com.nikasov.data.local.dao.SessionAndAdviceDao
-import com.nikasov.data.local.dao.SessionDao
+import com.nikasov.data.local.dao.*
 import com.nikasov.data.local.database.IdeaDatabase
 import dagger.Module
 import dagger.Provides
@@ -36,5 +34,13 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun provideSessionAndAdviceDao(db: IdeaDatabase): SessionAndAdviceDao = db.sessionAndAdviceDao
+
+    @Singleton
+    @Provides
+    fun provideFavoriteDao(db: IdeaDatabase): FavoriteDao = db.favoriteDao
+
+    @Singleton
+    @Provides
+    fun provideFavoriteAndAdviceDao(db: IdeaDatabase): FavoriteAndAdviceDao = db.favoriteAndAdviceDao
 
 }

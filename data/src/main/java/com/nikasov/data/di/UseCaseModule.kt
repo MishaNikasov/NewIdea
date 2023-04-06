@@ -1,6 +1,7 @@
 package com.nikasov.data.di
 
 import com.nikasov.data.local.dao.AdviceDao
+import com.nikasov.data.local.dao.FavoriteAndAdviceDao
 import com.nikasov.data.local.dao.SessionAndAdviceDao
 import com.nikasov.data.local.dao.SessionDao
 import com.nikasov.data.local.mapper.AdviceMapper
@@ -12,15 +13,14 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class UseCaseModule {
 
     @Provides
-    fun provideAddAdvicesToSessionUseCase(adviceDao: AdviceDao, adviceMapper: AdviceMapper) =
-        AddAdvicesToSessionUseCase(adviceDao, adviceMapper)
+    fun provideAddAdvicesToSessionUseCase(adviceDao: AdviceDao, favoriteAndAdviceDao: FavoriteAndAdviceDao, sessionAndAdviceDao: SessionAndAdviceDao, sessionMapper: SessionMapper, adviceMapper: AdviceMapper) =
+        AddAdvicesToSessionUseCase(adviceDao, sessionAndAdviceDao, favoriteAndAdviceDao, sessionMapper, adviceMapper)
 
     @Provides
     fun provideCreateSessionUseCase(sessionDao: SessionDao) =
@@ -31,11 +31,15 @@ class UseCaseModule {
         GetAdviceListUseCase(chatApi, adviceDtoMapper)
 
     @Provides
-    fun provideGetAllSessionUseCase(sessionAndAdviceDao: SessionAndAdviceDao, sessionMapper: SessionMapper) =
-        GetAllSessionUseCase(sessionAndAdviceDao, sessionMapper)
+    fun provideGetAllSessionUseCase(sessionAndAdviceDao: SessionAndAdviceDao, favoriteAndAdviceDao: FavoriteAndAdviceDao, sessionMapper: SessionMapper) =
+        GetAllSessionUseCase(sessionAndAdviceDao, favoriteAndAdviceDao, sessionMapper)
 
     @Provides
-    fun provideGetSessionUseCase(sessionAndAdviceDao: SessionAndAdviceDao, sessionMapper: SessionMapper) =
-        GetSessionUseCase(sessionAndAdviceDao, sessionMapper)
+    fun provideGetSessionUseCase(sessionAndAdviceDao: SessionAndAdviceDao, favoriteAndAdviceDao: FavoriteAndAdviceDao, sessionMapper: SessionMapper) =
+        GetSessionUseCase(sessionAndAdviceDao, favoriteAndAdviceDao, sessionMapper)
+
+    @Provides
+    fun provideGetAllFavoritesUseCase(favoriteAndAdviceDao: FavoriteAndAdviceDao, adviceMapper: AdviceMapper) =
+        GetAllFavoritesUseCase(favoriteAndAdviceDao, adviceMapper)
 
 }

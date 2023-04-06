@@ -13,10 +13,11 @@ class AdviceMapper @Inject constructor() {
         )
     }
 
-    fun mapFromEntity(adviceEntity: AdviceEntity): Advice {
+    fun mapFromEntity(adviceEntity: AdviceEntity, isFavorite: Boolean): Advice {
         return Advice(
             id = adviceEntity.adviceId,
-            text = adviceEntity.text
+            text = adviceEntity.text,
+            isFavorite = isFavorite
         )
     }
 

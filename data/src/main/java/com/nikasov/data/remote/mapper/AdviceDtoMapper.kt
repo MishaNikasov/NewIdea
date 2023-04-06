@@ -18,13 +18,10 @@ class AdviceDtoMapper @Inject constructor() {
         return splitMessages.mapIndexed { index, message ->
             Advice(
                 id = index.toLong(),
-                text = message
+                text = message,
+                isFavorite = false
             )
         }
     }
-
-//    fun map(message: ChatMessageDto): Advice {
-//        return Advice(message.content)
-//    }
 
 }

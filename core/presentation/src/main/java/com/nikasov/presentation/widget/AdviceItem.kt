@@ -1,12 +1,8 @@
 package com.nikasov.presentation.widget
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,12 +16,12 @@ import com.nikasov.theme.NewIdeaTheme
 fun AdviceItem(
     text: String,
     onClick: () -> Unit,
+    onFavoriteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         onClick = { onClick() },
         shape = RoundedCornerShape(25.dp),
-        border = BorderStroke(4.dp, MaterialTheme.colorScheme.surface),
         modifier = modifier
             .fillMaxWidth()
             .heightIn(min = 60.dp)
@@ -42,6 +38,11 @@ fun AdviceItem(
                 color = Color.Black
             )
         }
+        Button(onClick = {
+            onFavoriteClick()
+        }) {
+            Text(text = "Add to favorite")
+        }
     }
 }
 
@@ -49,6 +50,6 @@ fun AdviceItem(
 @Composable
 fun AdviceItemPreview() {
     NewIdeaTheme {
-        AdviceItem("Text", { })
+        AdviceItem("Text", { }, { })
     }
 }

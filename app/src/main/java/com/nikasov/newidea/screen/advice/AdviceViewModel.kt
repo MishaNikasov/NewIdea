@@ -8,6 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import nikasov.domain.entitiy.Advice
 import nikasov.domain.repository.ChatRepository
 import javax.inject.Inject
 
@@ -35,12 +36,18 @@ class AdviceViewModel @Inject constructor(
         }
     }
 
+    fun changeFavoriteState(advice: Advice) {
+        viewModelScope.launch {
+//            chatRepository.saveToFavorite(advice)
+        }
+    }
+
     private suspend fun handleNewAdvices(searchText: String) {
         when(val result = chatRepository.getAdvices(searchText)) {
             is DataState.Error -> _screenState.emit(State.error())
             is DataState.Success -> {
                 val list = result.data ?: emptyList()
-                chatRepository.addAdvicesToSession(
+                val session = chatRepository.addAdvicesToSession(
                     sessionId = currentSessionId ?: return,
                     list = list
                 )
@@ -48,7 +55,7 @@ class AdviceViewModel @Inject constructor(
                     State.successes(
                         AdviceScreenState(
                             title = searchText,
-                            adviceList = list
+                            adviceList = session.advices
                         )
                     )
                 )

@@ -48,6 +48,9 @@ fun AdviceScreen(
                             onClick = {
 //                                mainRouterEvent(MainRouter.Advice(item.text))
                                 viewModel.searchForAdvices(item.text)
+                            },
+                            onFavoriteClick = {
+                                viewModel.changeFavoriteState(item)
                             }
                         )
                         Spacer(modifier = Modifier.height(6.dp))

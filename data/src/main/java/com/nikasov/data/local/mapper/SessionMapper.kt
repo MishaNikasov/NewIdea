@@ -10,12 +10,12 @@ class SessionMapper @Inject constructor(
     private val mapper: AdviceMapper
 ) {
 
-    fun map(sessionAndAdvice: SessionAndAdvice): Session {
+    fun map(sessionAndAdvice: SessionAndAdvice, favoritesIdList: List<Long>): Session {
         return Session(
             id = sessionAndAdvice.session.sessionId,
             title = sessionAndAdvice.session.title,
             date = LocalDateTime.ofEpochSecond(sessionAndAdvice.session.date, 0, defaultTimeZone.offset),
-            advices = sessionAndAdvice.adviceList.map { mapper.mapFromEntity(it) }
+            advices = sessionAndAdvice.adviceList.map { mapper.mapFromEntity(it, favoritesIdList.contains(it.adviceId)) }
         )
     }
 

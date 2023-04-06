@@ -12,7 +12,7 @@ class ChatRepositoryImpl @Inject constructor(
     private val createSessionUseCase: CreateSessionUseCase,
     private val addAdvicesToSessionUseCase: AddAdvicesToSessionUseCase,
     private val getAllSessionUseCase: GetAllSessionUseCase,
-    private val getSessionUseCase: GetSessionUseCase
+    private val getSessionUseCase: GetSessionUseCase,
 ) : BaseRepository(), ChatRepository {
 
     override suspend fun getAdvices(text: String) = getAdviceListUseCase(text)

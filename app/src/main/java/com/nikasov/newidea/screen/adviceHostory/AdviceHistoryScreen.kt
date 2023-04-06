@@ -33,7 +33,10 @@ fun AdviceHistoryScreen(
                 LazyColumn {
                     items(list.size) { position ->
                         val item = list[position]
-                        AdviceHistoryItem(title = item.text)
+                        AdviceHistoryItem(
+                            title = item.text,
+                            isFavorite = item.isFavorite
+                        )
                     }
                 }
             }
