@@ -10,11 +10,13 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import nikasov.domain.entitiy.Advice
 import nikasov.domain.repository.ChatRepository
+import nikasov.domain.usecase.HandleNewAdviceUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class AdviceViewModel @Inject constructor(
-    private val chatRepository: ChatRepository
+    private val chatRepository: ChatRepository,
+    private val handleNewAdviceUseCase: HandleNewAdviceUseCase
 ) : ViewModel() {
 
     private val _screenState = MutableStateFlow<State<AdviceScreenState>>(State.Idle)
