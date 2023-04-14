@@ -1,8 +1,12 @@
 package com.nikasov.newidea.di
 
+import com.nikasov.data.local.dao.*
+import com.nikasov.data.local.mapper.AdviceMapper
+import com.nikasov.data.local.mapper.SessionMapper
+import com.nikasov.data.remote.api.ChatApi
+import com.nikasov.data.remote.mapper.AdviceDtoMapper
 import com.nikasov.data.repository.ChatRepositoryImpl
 import com.nikasov.data.repository.FavoriteRepositoryImpl
-import com.nikasov.data.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,27 +22,35 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideChatRepository(
-        getAdviceListUseCase: GetAdviceListUseCase,
-        createSessionUseCase: CreateSessionUseCase,
-        addAdvicesToSessionUseCase: AddAdvicesToSessionUseCase,
-        getAllSessionUseCase: GetAllSessionUseCase,
-        getSessionUseCase: GetSessionUseCase
+        chatApi: ChatApi,
+        adviceDtoMapper: AdviceDtoMapper,
+        sessionDao: SessionDao,
+        adviceDao: AdviceDao,
+        sessionAndAdviceDao: SessionAndAdviceDao,
+        favoriteAndAdviceDao: FavoriteAndAdviceDao,
+        sessionMapper: SessionMapper,
+        adviceMapper: AdviceMapper
     ): ChatRepository = ChatRepositoryImpl(
-        getAdviceListUseCase,
-        createSessionUseCase,
-        addAdvicesToSessionUseCase,
-        getAllSessionUseCase,
-        getSessionUseCase
+        chatApi,
+        adviceDtoMapper,
+        sessionDao,
+        adviceDao,
+        sessionAndAdviceDao,
+        favoriteAndAdviceDao,
+        sessionMapper,
+        adviceMapper
     )
 
     @Singleton
     @Provides
     fun provideFavoriteRepository(
-        addAdviceToFavoriteUseCase: AddAdviceToFavoriteUseCase,
-        getAllFavoritesUseCase: GetAllFavoritesUseCase
+        favoriteDao: FavoriteDao,
+        favoriteAndAdviceDao: FavoriteAndAdviceDao,
+        adviceMapper: AdviceMapper
     ): FavoriteRepository = FavoriteRepositoryImpl(
-        addAdviceToFavoriteUseCase,
-        getAllFavoritesUseCase
+        favoriteDao,
+        favoriteAndAdviceDao,
+        adviceMapper
     )
 
 }
