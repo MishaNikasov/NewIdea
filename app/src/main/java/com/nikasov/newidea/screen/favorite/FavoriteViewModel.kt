@@ -13,13 +13,14 @@ import javax.inject.Inject
 @HiltViewModel
 class FavoriteViewModel @Inject constructor(
     private val getAllFavoritesUseCase: GetAllFavoritesUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private val _screenState = MutableStateFlow<State<FavoriteScreenState>>(State.Idle)
     val screenState = _screenState.asStateFlow()
 
-    fun getAllFavorites() = viewModelScope.launch {
-        _screenState.emit(State.successes(FavoriteScreenState(adviceList = getAllFavoritesUseCase())))
+    fun getAllFavorites() {
+        viewModelScope.launch {
+            _screenState.emit(State.successes(FavoriteScreenState(adviceList = getAllFavoritesUseCase())))
+        }
     }
-
 }
