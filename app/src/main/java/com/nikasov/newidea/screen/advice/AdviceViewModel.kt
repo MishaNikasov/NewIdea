@@ -11,11 +11,13 @@ import kotlinx.coroutines.launch
 import nikasov.domain.entitiy.Advice
 import nikasov.domain.usecase.chat.HandleNewAdviceUseCase
 import nikasov.domain.usecase.chat.StartSessionUseCase
+import nikasov.domain.usecase.favorites.AddToFavoritesUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class AdviceViewModel @Inject constructor(
     private val startSessionUseCase: StartSessionUseCase,
+    private val addToFavoritesUseCase: AddToFavoritesUseCase,
     private val handleNewAdviceUseCase: HandleNewAdviceUseCase
 ) : ViewModel() {
 
@@ -41,7 +43,7 @@ class AdviceViewModel @Inject constructor(
 
     fun changeFavoriteState(advice: Advice) {
         viewModelScope.launch {
-//            chatRepository.saveToFavorite(advice)
+            addToFavoritesUseCase(advice)
         }
     }
 

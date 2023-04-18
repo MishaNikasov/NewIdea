@@ -46,7 +46,6 @@ fun AdviceScreen(
                             text = item.text,
                             modifier = Modifier.padding(horizontal = 8.dp),
                             onClick = {
-//                                mainRouterEvent(MainRouter.Advice(item.text))
                                 viewModel.searchForAdvices(item.text)
                             },
                             onFavoriteClick = {

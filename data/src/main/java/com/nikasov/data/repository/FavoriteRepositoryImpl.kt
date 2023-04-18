@@ -19,13 +19,12 @@ class FavoriteRepositoryImpl @Inject constructor(
         adviceMapper.mapFromEntity(it.advice, true)
     }
 
-
     override suspend fun saveToFavorite(advice: Advice) {
         favoriteDao.saveToFavorite(FavoriteEntity(adviceId = advice.id))
     }
 
     override suspend fun removeFromFavorite(advice: Advice) {
-
+        favoriteDao.removeFromFavorite(FavoriteEntity(adviceId = advice.id))
     }
 
 }
