@@ -4,21 +4,22 @@ import com.nikasov.common.utils.DataState
 import com.nikasov.common.utils.State
 import nikasov.domain.entitiy.Advice
 import nikasov.domain.repository.ChatRepository
+import javax.inject.Inject
 
-class HandleNewAdviceUseCase(
+class HandleNewAdviceUseCase @Inject constructor(
     private val chatRepository: ChatRepository
 ) {
 
-    suspend operator fun invoke(text: String, sessionId: Long): State<List<Advice>> {
-        when(val result = chatRepository.getAdvices(searchText)) {
-            is DataState.Error -> _screenState.emit(State.error())
+    suspend operator fun invoke(text: String, sessionId: Long): DataState<List<Advice>> {
+        return when(val result = chatRepository.getAdvices(text)) {
+            is DataState.Error -> DataState.error(result.errorModel)
             is DataState.Success -> {
                 val list = result.data ?: emptyList()
                 val session = chatRepository.addAdvicesToSession(
-                    sessionId = currentSessionId ?: return,
+                    sessionId = sessionId,
                     list = list
                 )
-                return session.advices
+                return DataState.successes(session.advices)
             }
         }
     }

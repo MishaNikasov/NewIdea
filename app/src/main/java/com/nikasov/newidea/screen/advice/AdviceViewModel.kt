@@ -9,13 +9,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import nikasov.domain.entitiy.Advice
-import nikasov.domain.repository.ChatRepository
 import nikasov.domain.usecase.HandleNewAdviceUseCase
+import nikasov.domain.usecase.StartSessionUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class AdviceViewModel @Inject constructor(
-    private val chatRepository: ChatRepository,
+    private val startSessionUseCase: StartSessionUseCase,
     private val handleNewAdviceUseCase: HandleNewAdviceUseCase
 ) : ViewModel() {
 
@@ -26,7 +26,8 @@ class AdviceViewModel @Inject constructor(
 
     fun startSession(searchText: String) {
         viewModelScope.launch {
-            currentSessionId = chatRepository.createSession(searchText)
+            _screenState.emit(State.loading())
+            currentSessionId = startSessionUseCase(searchText)
             handleNewAdvices(searchText)
         }
     }
@@ -45,19 +46,14 @@ class AdviceViewModel @Inject constructor(
     }
 
     private suspend fun handleNewAdvices(searchText: String) {
-        when(val result = chatRepository.getAdvices(searchText)) {
+        when(val advices = handleNewAdviceUseCase(searchText, currentSessionId ?: return)) {
             is DataState.Error -> _screenState.emit(State.error())
             is DataState.Success -> {
-                val list = result.data ?: emptyList()
-                val session = chatRepository.addAdvicesToSession(
-                    sessionId = currentSessionId ?: return,
-                    list = list
-                )
                 _screenState.emit(
                     State.successes(
                         AdviceScreenState(
                             title = searchText,
-                            adviceList = session.advices
+                            adviceList = advices.data ?: emptyList()
                         )
                     )
                 )
