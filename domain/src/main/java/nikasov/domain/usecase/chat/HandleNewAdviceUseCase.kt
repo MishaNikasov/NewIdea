@@ -1,4 +1,4 @@
-package nikasov.domain.usecase
+package nikasov.domain.usecase.chat
 
 import com.nikasov.common.utils.DataState
 import com.nikasov.common.utils.State

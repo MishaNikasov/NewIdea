@@ -7,21 +7,26 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import nikasov.domain.repository.ChatRepository
+import nikasov.domain.usecase.chat.GetAllSessionsUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class SessionHistoryViewModel @Inject constructor(
-    private val chatRepository: ChatRepository
-): ViewModel() {
+    private val getAllSessionsUseCase: GetAllSessionsUseCase
+) : ViewModel() {
 
     private val _screenState = MutableStateFlow<State<SessionHistoryScreenState>>(State.Idle)
     val screenState = _screenState.asStateFlow()
 
     fun getHistory() {
         viewModelScope.launch {
-            val sessions = chatRepository.getAllSessions()
-            _screenState.emit(State.successes(SessionHistoryScreenState(sessions)))
+            _screenState.emit(
+                State.successes(
+                    SessionHistoryScreenState(
+                        getAllSessionsUseCase()
+                    )
+                )
+            )
         }
     }
 

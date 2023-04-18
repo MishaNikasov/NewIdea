@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import nikasov.domain.entitiy.Advice
-import nikasov.domain.usecase.HandleNewAdviceUseCase
-import nikasov.domain.usecase.StartSessionUseCase
+import nikasov.domain.usecase.chat.HandleNewAdviceUseCase
+import nikasov.domain.usecase.chat.StartSessionUseCase
 import javax.inject.Inject
 
 @HiltViewModel
