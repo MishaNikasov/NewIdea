@@ -50,7 +50,6 @@ dependencies {
     implementation Libs.Compose.Navigation
     implementation Libs.Compose.UI
     implementation Libs.Compose.UiToolingPreview
-    implementation Libs.Compose.Constraint
     debugImplementation Libs.Compose.UiTooling
     debugImplementation Libs.Compose.TestManifest
 

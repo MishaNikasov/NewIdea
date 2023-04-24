@@ -8,10 +8,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nikasov.presentation.widget.bottomWeather.BottomBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,17 +36,28 @@ class MainActivity : ComponentActivity() {
 //            NewIdeaTheme(false) {
 //                RootScreen(navHostController)
 //            }
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color(0xFF242632))
-            ) {
-                BottomBar(
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .padding(vertical = 8.dp)
-                )
-            }
+            c()
         }
+    }
+}
+
+@Preview
+@Composable
+fun a() {
+    c()
+}
+
+@Composable
+fun c(){
+    Box(
+        contentAlignment = Alignment.BottomCenter,
+        modifier = Modifier
+            .background(Color(0xFF242632))
+            .fillMaxSize()
+    ) {
+        BottomBar(
+            modifier = Modifier
+                .padding(vertical = 10.dp)
+        )
     }
 }

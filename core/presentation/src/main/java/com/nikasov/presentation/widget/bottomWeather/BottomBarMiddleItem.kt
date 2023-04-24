@@ -6,6 +6,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
@@ -41,36 +42,44 @@ fun BottomBarMiddleItem(
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
-                .clip(CircleShape)
-                .border(
-                    border = BorderStroke(
-                        width = 1.dp,
-                        color = borderColor,
-                    ),
-                    shape = CircleShape
-                )
-                .size(60.dp)
-                .then(
-                    if (fillBg) Modifier.background(
-                        brush = Brush.verticalGradient(
-                            colors = listOf(
-                                Color(0xFF0550B9),
-                                Color(0xFF2365C1),
-                                Color(0xFF3D77C9)
-                            ).reversed()
-                        )
-                    ) else Modifier
-                )
+                .fillMaxSize()
         ) {
             val painter = when (state) {
                 SelectionState.Selected -> painterResource(R.drawable.ic_earth_selected)
                 SelectionState.Unselected -> painterResource(R.drawable.ic_earth_unselected)
             }
+            Box(
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .clip(CircleShape)
+                    .border(
+                        border = BorderStroke(
+                            width = 1.dp,
+                            color = borderColor,
+                        ),
+                        shape = CircleShape
+                    )
+                    .size(60.dp)
+                    .then(
+                        if (fillBg) Modifier
+                            .background(
+                                brush = Brush.verticalGradient(
+                                    colors = listOf(
+                                        Color(0xFF0550B9),
+                                        Color(0xFF2365C1),
+                                        Color(0xFF3D77C9)
+                                    ).reversed()
+                                )
+                            )
+                        else Modifier
+                    )
+            )
             Image(
                 painter = painter,
                 contentDescription = "Main",
                 modifier = Modifier
                     .size(22.dp)
+                    .align(Alignment.Center)
             )
         }
     }

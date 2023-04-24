@@ -1,6 +1,6 @@
 package com.nikasov.presentation.widget.bottomWeather
 
-import androidx.compose.animation.*
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
@@ -34,7 +34,10 @@ fun BottomBarItem(
             SelectionState.Selected -> Color(0xFF98B8E6)
             SelectionState.Unselected -> Color(0xFFB9B9B9)
         }
-        BottomBarItemContent(item.title, painter, textColor)
+        val isIndicatorVisible = state == SelectionState.Selected
+
+        BottomBarItemContent(item.title, painter, textColor, isIndicatorVisible)
+
     }
 }
 
@@ -42,11 +45,12 @@ fun BottomBarItem(
 fun BottomBarItemContent(
     title: String,
     painter: Painter,
-    textColor: Color
+    textColor: Color,
+    isIndicatorVisible: Boolean
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.fillMaxSize()
     ) {
         Image(
@@ -61,6 +65,10 @@ fun BottomBarItemContent(
             fontSize = 10.sp,
             color = textColor
         )
+        Spacer(modifier = Modifier.weight(1f))
+        if (isIndicatorVisible) {
+            BottomBarIndicator()
+        }
     }
 }
 
