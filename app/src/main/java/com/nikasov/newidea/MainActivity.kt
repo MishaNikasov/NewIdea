@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nikasov.presentation.widget.bottomWeather.BottomBar
+import com.nikasov.presentation.widget.expandableForecast.ExpandableForecast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,7 +45,7 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun a() {
-    c()
+    ExpandableForecast()
 }
 
 @Composable
@@ -57,7 +58,10 @@ fun c(){
     ) {
         BottomBar(
             modifier = Modifier
-                .padding(vertical = 10.dp)
+                .padding(
+                    vertical = 10.dp,
+                    horizontal = 10.dp
+                )
         )
     }
 }

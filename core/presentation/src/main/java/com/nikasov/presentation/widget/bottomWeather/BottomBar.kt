@@ -1,14 +1,13 @@
 package com.nikasov.presentation.widget.bottomWeather
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.nikasov.presentation.R
+import com.nikasov.presentation.widget.WaveShape
 import com.nikasov.presentation.widget.bottomWeather.utils.BottomBarData
 import com.nikasov.presentation.widget.bottomWeather.utils.ItemPosition
 import com.nikasov.presentation.widget.bottomWeather.utils.calculateState
@@ -25,12 +24,9 @@ fun BottomBar(
         modifier = modifier
             .height(97.dp)
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.bgr),
-            modifier = Modifier
-                .align(Alignment.Center)
-                .fillMaxWidth(),
-            contentDescription = ""
+        WaveShape(
+            tint = Color(0xFF141416),
+            alpha = 0.4f
         )
         Row(
             horizontalArrangement = Arrangement.Center,
